@@ -1,0 +1,17 @@
+const MyContext = React.createContext();
+
+class MyComponent extends React.Component {
+  render() {
+    return (
+      <MyContext.Consumer>
+        {value => <div>{value}</div>}
+      </MyContext.Consumer>
+    );
+  }
+}
+
+используется в классовых компонентах, которые устарели
+Может быть использован и вместо хука useContext.
+
+useContext более чистый, требует меньше кода, лучше читается,
+более новый, и считается лучшей практикой
