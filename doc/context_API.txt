@@ -1,0 +1,50 @@
+Context API
+
+// ================================
+
+import React, { createContext, useState, useContext } from 'react';
+
+// Создаем контекст
+const ThemeContext = createContext();
+
+const App = () => {
+  const [theme, setTheme] = useState('light');
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+};
+
+const Toolbar = () => {
+  return (
+    <div>
+      <ThemeButton />
+    </div>
+  );
+};
+
+const ThemeButton = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  return (
+    <button
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+    >
+      Switch to {theme === 'light' ? 'dark' : 'light'} theme
+    </button>
+  );
+};
+
+export default App;
+
+// ==========================
+
+В больших приложениях Context API может стать менее удобным, так как все компоненты, подписанные на контекст, будут перерендериваться при каждом изменении состояния.
+
+Управление сложными состояниями может стать трудоемким, особенно если требуется разделять состояние между различными частями приложения.
+
+Компоненты которые скрыты с помощью CSS, все-равно будут перерендериваться. Если они подписаны на контекст.
+
+Если компонент вообще не рендерится (например, через условие if или тернарный оператор возвращает null или ничего), то его не будет в DOM, и он не будет перерендериваться, пока не станет видимым

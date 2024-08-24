@@ -1,0 +1,62 @@
+Component Composition
+Композиция компонентов в React
+
+Это типа такие обертки одного компонента над другим как я понял
+
+// ====================== props.children
+function Card({ children }) {
+  return <div className="card">{children}</div>;
+}
+
+function App() {
+  return (
+    <Card>
+      <h1>Заголовок</h1>
+      <p>Текст внутри карточки</p>
+    </Card>
+  );
+}
+
+// ======================== Композиция через пропсы
+
+function Dialog({ title, content }) {
+  return (
+    <div className="dialog">
+      <h2>{title}</h2>
+      <div>{content}</div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Dialog 
+      title={<h1>Заголовок диалога</h1>}
+      content={<p>Это содержимое диалога.</p>} 
+    />
+  );
+}
+
+// ========================= Специальные пропсы для кастомизации
+
+function List({ items, renderItem }) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
+}
+
+function App() {
+  const fruits = ['Apple', 'Banana', 'Cherry'];
+  
+  return (
+    <List 
+      items={fruits} 
+      renderItem={(item) => <strong>{item}</strong>} 
+    />
+  );
+}
+
