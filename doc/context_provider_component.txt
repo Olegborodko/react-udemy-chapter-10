@@ -1,0 +1,7 @@
+Outsourcing Context & State Into a Separate Provider
+
+это по сути отдельная функция, в которую выводятся состояние и все функции связаны с перерисовкой состояния.
+
+return <CartContext.Provider value={ctxValue}>
+{children}
+</CartContext.Provider>
