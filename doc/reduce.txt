@@ -1,0 +1,15 @@
+reduce используется для обработки массива и получения одного итогового значения.
+
+const items = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];
+
+const count = items.reduce((accumulator, currentValue) => {
+  if (!accumulator[currentValue]) {
+    accumulator[currentValue] = 0;
+  }
+  accumulator[currentValue]++;
+  return accumulator;
+}, {});
+
+console.log(count); // { apple: 3, banana: 2, orange: 1 }
+
+//================================
